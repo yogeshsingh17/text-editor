@@ -12,13 +12,21 @@
         <div class="toolbar">
             <div class="toolbar-head">
                 <input type="text" name="fileName" id="fileName" placeholder="File Name">
-                <select name="saveAs" id="saveAs">
+                <select 
+                    name="saveAs" 
+                    id="saveAs"
+                    onchange="handleFileExport(this.value)"
+                >
                     <option selected hidden disabled>File</option>
                     <option value="new">New File</option>
                     <option value="txt">Save as txt</option>
                     <option value="pdf">Save as pdf</option>
                 </select>
-                <select name="format" id="format">
+                <select 
+                    name="format" 
+                    id="format"
+                    onchange="formatDoc('formatBlock', this.value); this.selectedIndex = 0"
+                >
                     <option value="" selected hidden disabled>Format</option>
                     <option value="h1">Heading 1</option>
                     <option value="h2">Heading 2</option>
@@ -28,7 +36,11 @@
                     <option value="h6">Heading 6</option>
                     <option value="p">Paragraph</option>
                 </select>
-                <select name="fontSize" id="fontSize">
+                <select 
+                    name="fontSize" 
+                    id="fontSize"
+                    onchange="formatDoc('fontSize', this.value); this.selectedIndex = 0"
+                >
                     <option value="" selected hidden disabled>Font Size</option>
                     <option value="1">Extra Small</option>
                     <option value="2">Small</option>
@@ -40,63 +52,76 @@
                 </select>
                 <div class="color">
                     <span>Color</span>
-                    <input type="color">
+                    <input 
+                        type="color"
+                        onchange="formatDoc('foreColor', this.value); this.selectedIndex = 0"
+                    >
                 </div>
                 <div class="backgroundColor">
                     <span>Background</span>
-                    <input type="color" name="" id="">
+                    <input 
+                        type="color" 
+                        name="" id=""
+                        onchange="formatDoc('backColor', this.value); this.selectedIndex = 0"
+                    >
                 </div>
             </div>
             <div class="toolbar-btn">
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('undo')">
                     <i class="fa-solid fa-rotate-left"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('redo')">
                     <i class="fa-solid fa-rotate-right"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('bold')">
                     <i class="fa-solid fa-bold"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('underline')">
                     <i class="fa-solid fa-underline"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('italic')">
                     <i class="fa-solid fa-italic"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('strikethrough')">
                     <i class="fa-solid fa-strikethrough"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('justifyLeft')">
                     <i class="fa-solid fa-align-left"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('justifyCenter')">
                     <i class="fa-solid fa-align-center"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('justifyRight')">
                     <i class="fa-solid fa-align-right"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('justifyFull')">
                     <i class="fa-solid fa-align-justify"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('insertOrderedList')">
                     <i class="fa-solid fa-list-ol"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('insertUnorderedList')">
                     <i class="fa-solid fa-list-ul"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="handleAddLink()">
                     <i class="fa-solid fa-link"></i>
                 </button>
-                <button class="toolbar-btn__btn">
+                <button class="toolbar-btn__btn" onclick="formatDoc('unLink')">
                     <i class="fa-solid fa-link-slash"></i>
                 </button>
-                <button id="showCode" class="toolbar-btn__btn">
+                <button id="show-code" class="toolbar-btn__btn" data-active="false">
                     <i class="fa-solid fa-code"></i>
                 </button>
             </div>
         </div>
-        <div class="content">Lorem Ipsum</div>
+        <div class="content" contenteditable="true">Lorem Ipsum</div>
     </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
